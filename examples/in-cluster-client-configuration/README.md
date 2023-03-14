@@ -1,3 +1,44 @@
+
+cat > ckad-aaa-role.yaml <<EOF
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  creationTimestamp: null
+  name: ckad-aaa-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  creationTimestamp: null
+  name: ckad-aaa-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: ckad-aaa-role
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: default
+EOF
+
+kubectl delete -f ckad-aaa-role.yaml
+
+kubectl apply -f ckad-aaa-role.yaml
+
+```
+
+
+
 # Authenticating inside the cluster
 
 This example shows you how to configure a client with client-go to authenticate

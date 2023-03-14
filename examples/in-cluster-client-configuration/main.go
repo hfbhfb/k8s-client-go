@@ -50,11 +50,14 @@ func main() {
 	for {
 		// get pods in all the namespaces by omitting namespace
 		// Or specify namespace to get pods in particular namespace
-		pods, err := clientset.CoreV1().Pods("").List(context.TODO(), metav1.ListOptions{})
+		pods, err := clientset.CoreV1().Pods("default").List(context.TODO(), metav1.ListOptions{})
 		if err != nil {
-			panic(err.Error())
+			//panic(err.Error())
+			fmt.Println(err);
+			time.Sleep(2 * time.Second)
+			continue;
 		}
-		fmt.Printf("There are %d pods in the cluster\n", len(pods.Items))
+		fmt.Printf("There are %d pods in the default namespace cluster\n", len(pods.Items))
 
 		// Examples for error handling:
 		// - Use helper functions e.g. errors.IsNotFound()
@@ -70,6 +73,13 @@ func main() {
 			fmt.Printf("Found example-xxxxx pod in default namespace\n")
 		}
 
+		pods, err = clientset.CoreV1().Pods("").List(context.TODO(), metav1.ListOptions{})
+		if err != nil {
+			//panic(err.Error())
+			fmt.Println(err);
+			time.Sleep(2 * time.Second)
+			continue;
+		}
 		time.Sleep(10 * time.Second)
 	}
 }

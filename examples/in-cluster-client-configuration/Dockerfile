@@ -12,6 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+#FROM debian
+#COPY ./testaaa /app
+#ENTRYPOINT /app
+
+#FROM busybox:1.36.0-uclibc
 FROM debian
-COPY ./app /app
-ENTRYPOINT /app
+COPY ./testaaa /testaaa
+ENTRYPOINT /testaaa
+#CMD ["/bin/sh","-c","sleep 500;sleep 500;"]
+
+
+
