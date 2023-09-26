@@ -48,14 +48,15 @@ func main() {
 		panic(err.Error())
 	}
 	for {
+		fmt.Println("new add 111")
 		// get pods in all the namespaces by omitting namespace
 		// Or specify namespace to get pods in particular namespace
 		pods, err := clientset.CoreV1().Pods("default").List(context.TODO(), metav1.ListOptions{})
 		if err != nil {
 			//panic(err.Error())
-			fmt.Println(err);
+			fmt.Println(err)
 			time.Sleep(2 * time.Second)
-			continue;
+			continue
 		}
 		fmt.Printf("There are %d pods in the default namespace cluster\n", len(pods.Items))
 
@@ -76,10 +77,10 @@ func main() {
 		pods, err = clientset.CoreV1().Pods("").List(context.TODO(), metav1.ListOptions{})
 		if err != nil {
 			//panic(err.Error())
-			fmt.Println(err);
+			fmt.Println(err)
 			time.Sleep(2 * time.Second)
-			continue;
+			continue
 		}
-		time.Sleep(10 * time.Second)
+		time.Sleep(30 * time.Second)
 	}
 }

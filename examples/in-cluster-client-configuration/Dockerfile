@@ -17,9 +17,10 @@
 #ENTRYPOINT /app
 
 #FROM busybox:1.36.0-uclibc
-FROM debian
+FROM centos:centos7.6.1810
 COPY ./testaaa /testaaa
-ENTRYPOINT /testaaa
+CMD ["/bin/sh","-c","/testaaa"]
+#ENTRYPOINT /testaaa
 #CMD ["/bin/sh","-c","sleep 500;sleep 500;"]
 
 
